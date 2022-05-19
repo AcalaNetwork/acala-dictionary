@@ -1,23 +1,40 @@
+type KVData @jsonField {
+  key: String
+  value: String
+  type: String
+}
+
 type SpecVersion @entity {
 
   id: ID! #specVersion
 
   blockHeight: BigInt!
 
+  timestamp: Date
+
+}
+
+type Block @entity {
+  id: ID!
+
+  height: BigInt
+
+  timestamp: Date!
 }
 
 
 type Event @entity {
-
   id: ID!
+
+  block: Block
 
   module: String! @index
 
   event: String! @index
 
-  blockHeight: BigInt! @index
+  data: [KVData]
 
-  data: String!
+  timestamp: Date
 }
 
 
@@ -25,16 +42,34 @@ type Extrinsic @entity {
 
   id: ID!
 
+  block: Block
+
   module: String! @index
 
   call: String! @index
-
-  blockHeight: BigInt! @index
 
   success: Boolean!
 
   isSigned: Boolean!
 
-  data: String!
+  data: [KVData]
 
+  timestamp: Date
+
+}
+
+type Call @entity {
+  id: ID!
+
+  section: String
+  method: String
+  args:[KVData] 
+  timestamp: Date
+  isSuccess: Boolean
+
+  signer: String
+  extrinsic: Extrinsic
+  parentCall: Call
+
+  calls: [Call] @derivedFrom(field: "parentCall")
 }

@@ -1,7 +1,7 @@
 specVersion: 1.0.0
 name: acala-dictionary
 version: 1.0.0
-description: "transfer history data"
+description: "subql dictionary for Karura and Acala subquery"
 repository: "https://github.com/AcalaNetwork/acala-transfer-subql"
 runner:
   node:

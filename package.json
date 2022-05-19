@@ -1,5 +1,5 @@
 {
-  "name": "acala-tokens-subql",
+  "name": "acala-dictionary",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
